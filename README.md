@@ -1,2 +1,2 @@
-# Microservices-shop-
+# Microservices-shop
 Devops Project
