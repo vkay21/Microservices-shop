@@ -5,7 +5,12 @@ import bcrypt
 import jwt
 
 # Comes from an environment variable (a Kubernetes Secret later). Never hard-code real secrets.
-JWT_SECRET = os.getenv("JWT_SECRET", "dev-only-secret-change-me-in-production-0123456789")
+JWT_SECRET = os.getenv("JWT_SECRET")
+
+if not JWT_SECRET or len(JWT_SECRET) < 32:
+    raise RuntimeError(
+        "JWT_SECRET must be configured and at least 32 characters long."
+    )
 JWT_ALGORITHM = "HS256"
 TOKEN_MINUTES = int(os.getenv("TOKEN_MINUTES", "60"))
 
