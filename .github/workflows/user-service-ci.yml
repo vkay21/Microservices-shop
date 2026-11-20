@@ -32,4 +32,6 @@ jobs:
 
       - name: Run automated tests
         working-directory: services/user-service
+        env:
+          JWT_SECRET: "ci-only-test-secret-not-for-production-123456"
         run: pytest -v
